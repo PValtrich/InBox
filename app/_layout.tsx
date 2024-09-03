@@ -16,9 +16,8 @@ export default function RootLayout() {
       */
       // header: Header
     }}>
-      <Stack.Screen name="(groups)/index" options={{headerShown: false}}/>
       <Stack.Screen name="(login)/index" options={{headerTitle: 'VOLTAR'}}/>
-      <Stack.Screen name="(home)/index" options={{headerTitle: 'VOLTAR'}}/>
+      <Stack.Screen name="(home)/index" options={{headerShown: false}}/>
     </Stack>
   );
 }
