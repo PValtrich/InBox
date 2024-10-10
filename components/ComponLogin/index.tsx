@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { Icon } from 'react-native-elements';
+import { Link } from 'expo-router';
 
 export default function Login() {
     const [isPasswordVisible, setPasswordVisible] = useState(false);
@@ -45,9 +46,11 @@ export default function Login() {
                         </InputWrapper>
                     </SectionInput>
                 </ConstInputs>
-                <EnterButton>
-                    <Text style={{ color: '#fff' }}>ENTRAR</Text>
-                </EnterButton>
+                <Link href="(teacher)" asChild>
+                    <EnterButton>
+                        <Text style={{ color: '#fff' }}>ENTRAR</Text>
+                    </EnterButton>
+                </Link>
             </Container>
         </All>
     );
@@ -108,7 +111,7 @@ const VisibilityToggle = styled.TouchableOpacity`
 // Botão de entrada
 const EnterButton = styled.TouchableOpacity`
     height: 45px;
-    width: 100%;
+    width: 300px;
     background-color: #45C7C9;
     margin-top: 150px;
     justify-content: center;

@@ -8,28 +8,37 @@ import { Link as ExpoRouterLink } from 'expo-router';
 interface DataItem {
     id: string;
     color: string;
+    linkPage: string;
 }
 
 const DATA: DataItem[] = [
-    { id: '1', color: '#FF5733' },
-    { id: '2', color: '#33FF57' },
-    { id: '3', color: '#3357FF' },
-    { id: '4', color: '#FF33A6' },
-    { id: '5', color: '#FFC300' },
+    { id: '1', color: '#FF5733', linkPage: 'ATOMÍSTICA', },
+    { id: '2', color: '#33FF57', linkPage: 'INORGÂNICA'},
+    { id: '3', color: '#3357FF', linkPage: 'QUÍMICA GERAL' },
+    { id: '4', color: '#FF33A6', linkPage: 'FÍSICO-QUÍMICA' },
+    { id: '5', color: '#FFC300', linkPage: 'ORGÂNICA' },
 ];
 
-const Item: React.FC<{ color: string }> = ({ color }) => (
-    <ItemContainer style={{ 
+const Item: React.FC<{ color: string, linkPage: string }> = ({ color, linkPage }) => (
+    <ContainerLink href={{
+        pathname: '/(about)', 
+        params: {area: linkPage}}} 
+        asChild
+    >
+    <ItemContainer style={{
         backgroundColor: color,
         width: 300, 
         height: 200,
-        marginTop: 20 }}/>
+        marginTop: 20 }}
+
+        />
+    </ContainerLink>
 );
 
 const Home: React.FC = () => {
     return (
         <Container>
-            <Header />
+            <Header/>
             <ScrollView>
                 <Content>
                     <Title>
@@ -41,7 +50,7 @@ const Home: React.FC = () => {
                     <SafeAreaView style={{width: '100%'}}>
                     <FlatList
                         data={DATA}
-                        renderItem={({ item }) => <Item color={item.color} />}
+                        renderItem={({ item }) => <Item color={item.color} linkPage={item.linkPage}/>}
                         keyExtractor={item => item.id}
                         horizontal
                         showsHorizontalScrollIndicator={false}
