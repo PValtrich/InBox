@@ -21,7 +21,7 @@ export default function PageLogin(){
             damping: 12, 
             stiffness: 90, 
             mass: 1, 
-            overshootClamping: true, 
+            overshootClamping: true,
         });
 
         // Animação de fade-in e zoom-in para o logo
@@ -91,7 +91,9 @@ const CampViewLogin = styled.View`
     width: 100%;
     background-color: #fff;
     border-top-left-radius: 50px;
+    border-top-right-radius: 50px; /* Caso também queira arredondar o lado direito */
 `
+
 
 const AnimatedCampViewLogin = styled(Animated.createAnimatedComponent(CampViewLogin))``;
 

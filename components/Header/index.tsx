@@ -7,12 +7,6 @@ export default function Header() {
     return (
         <StyledHeader>
             <IconContainer>
-                <Icon
-                    type="material"
-                    name='menu'
-                    size={35}
-                    color={'#636C76'}
-                />
             </IconContainer>
 
             <TittleHeader>Química InBox</TittleHeader>

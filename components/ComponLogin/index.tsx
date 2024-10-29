@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { Icon } from 'react-native-elements';
-<<<<<<< HEAD
 import { Link } from 'expo-router';
-=======
->>>>>>> ac04ee89c410328a9d8056f447c1bba1499118ff
 
 export default function Login() {
     const [isPasswordVisible, setPasswordVisible] = useState(false);
@@ -49,17 +46,11 @@ export default function Login() {
                         </InputWrapper>
                     </SectionInput>
                 </ConstInputs>
-<<<<<<< HEAD
-                <Link href="(teacher)" asChild>
+                <Link href="/(teacher)" asChild>
                     <EnterButton>
                         <Text style={{ color: '#fff' }}>ENTRAR</Text>
                     </EnterButton>
                 </Link>
-=======
-                <EnterButton>
-                    <Text style={{ color: '#fff' }}>ENTRAR</Text>
-                </EnterButton>
->>>>>>> ac04ee89c410328a9d8056f447c1bba1499118ff
             </Container>
         </All>
     );
@@ -120,11 +111,7 @@ const VisibilityToggle = styled.TouchableOpacity`
 // Botão de entrada
 const EnterButton = styled.TouchableOpacity`
     height: 45px;
-<<<<<<< HEAD
     width: 300px;
-=======
-    width: 100%;
->>>>>>> ac04ee89c410328a9d8056f447c1bba1499118ff
     background-color: #45C7C9;
     margin-top: 150px;
     justify-content: center;

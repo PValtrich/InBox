@@ -1,41 +1,53 @@
 import React, { useState } from "react";
-import {
+import
+{
   ScrollView,
   View,
   Text,
   ImageBackground,
   Image,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+  TouchableOpacity
+}
+from "react-native";
 import styled from "styled-components/native";
 import Svg, { Path } from "react-native-svg";
 import { Icon } from "react-native-elements";
 
 export default function PageTeacher() {
-  const [levelVisible, setLevelVisible] = useState(false);
-  const [areaVisible, setAreaVisible] = useState(false);
-  const [selectedLevel, setSelectedLevel] = useState("Nível");
-  const [selectedArea, setSelectedArea] = useState("Área");
+  const questions = [
+    "(PUC-RS) A aceitação histórica da ideia de que a matéria é composta.",
+    "(FUVEST) O conceito de equilíbrio químico em reações reversíveis.",
+    "(ENEM) A importância da tabela periódica no estudo da química.",
+    "(UNICAMP) A relação entre ácidos e bases segundo a teoria de Brønsted-Lowry.",
+    "(UFSC) A evolução dos modelos atômicos ao longo da história.",
+  ];
 
-//   const handleImageUpload = () => {
-//     Alert.alert("Imagem", "Função de anexar imagem disparada!");
-//   };
-
-  const levels = ["1", "2", "3"];
-  const areas = ["Matemática", "Química", "Física", "Biologia"];
+  const InputQuestion = ({ question }: { question: string }) => {
+    return (
+      <View style={{alignItems: 'center', margin: 3}}>
+        <QuestionContainer>
+          <QuestionTitle>QUESTÃO:</QuestionTitle>
+          <QuestionText 
+            numberOfLines={1} 
+            ellipsizeMode="tail">
+            {question}
+          </QuestionText>
+        </QuestionContainer>
+      </View>
+    );
+  };
 
   return (
     <All>
-      <StyledImageBackground source={require("../../assets/images/Lab.png")}>
-        <TextStyled>BEM VINDO À PÁGINA DO PROFESSOR</TextStyled>
-        <TextSubTitle>
-          Compartilhe seus Conteúdos, Materiais Didáticos e Ferramentas Educativas
-        </TextSubTitle>
-      </StyledImageBackground>
+        <StyledImageBackground source={require("../../assets/images/Lab.png")}>
+            <TextStyled>BEM VINDO À PÁGINA DO PROFESSOR</TextStyled>
+            <TextSubTitle>Compartilhe seus Conteúdos, Materiais Didáticos e Ferramentas Educativas</TextSubTitle>
+        </StyledImageBackground>
 
-      <PathContainer>
-        <CardPath>
+        <TopicLink>
+
+          {/* Card Add */}
+        <CardLink>
           <WaveBackground>
             <Svg height="100%" width="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
               <Path
@@ -52,9 +64,9 @@ export default function PageTeacher() {
             </ImageContainer>
           </WaveBackground>
           <CardText>ADICIONAR QUESTÕES</CardText>
-        </CardPath>
-
-        <CardPath>
+        </CardLink>
+          {/* Card Edit */}
+        <CardLink>
           <WaveBackground>
             <Svg height="100%" width="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
               <Path
@@ -71,8 +83,9 @@ export default function PageTeacher() {
             </ImageContainer>
           </WaveBackground>
           <CardText>EXCLUA E EDITE</CardText>
-        </CardPath>
-      </PathContainer>
+        </CardLink>
+
+      </TopicLink>
 
       <BoxTitle>
         <Icon name="quiz" color="#636C76" size={35} />
@@ -202,9 +215,7 @@ export default function PageTeacher() {
                 height: 50,
                 }}>
             </InputText>
-            <Question>
-
-        </Question>
+   
             </View>
           </InputView>
         </Question>
@@ -231,6 +242,14 @@ export default function PageTeacher() {
           </InputView>
         </Question>
       </AddQuestion>
+
+      <EditQuestions style={{ marginTop: 20 }}>
+        <ScrollQuestion>
+          {questions.map((question, index) => (
+            <InputQuestion key={index} question={question} />
+          ))}
+        </ScrollQuestion>
+      </EditQuestions>
     </All>
   );
 }
@@ -239,11 +258,12 @@ export default function PageTeacher() {
 
 const All = styled(ScrollView)`
   flex: 1;
-  background-color: #f2f2f2;    
+  background-color: #f2f2f2;
+  margin-bottom: 40px;
 `;
 
 const StyledImageBackground = styled(ImageBackground)`
-  width: 100%;
+  width: 101%;
   height: 242px;
   justify-content: center;
   align-items: center;
@@ -257,20 +277,20 @@ const TextStyled = styled(Text)`
 
 const TextSubTitle = styled(Text)`
   color: white;
-  font-size: 12px;
+  font-size: 11.5px;
 `;
 
-const PathContainer = styled(View)`
+const TopicLink = styled(View)`
   width: 100%;
   height: 110px;
   margin-top: 15px;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  gap: 20px;
+  gap: 5%;
 `;
 
-const CardPath = styled(View)`
+const CardLink = styled(View)`
   width: 180px;
   height: 100%;
   background-color: #f7f7f7;
@@ -363,27 +383,6 @@ const Button = styled(View)`
   margin-top: 20px;
 `;
 
-const Dropdown = styled(View)`
-  background-color: #f2f2f2;
-  border-radius: 5px;
-  border: 2px solid #e6e9ec;
-  position: absolute;
-  top: 50px; /* Ajuste a posição conforme necessário */
-  width: 100%;
-  max-height: 150px;
-  overflow: hidden;
-`;
-
-const DropdownItem = styled(TouchableOpacity)`
-  padding: 10px;
-  border-bottom-width: 1px;
-  border-bottom-color: #e6e9ec;
-`;
-
-const DropdownText = styled(Text)`
-  color: #636c76;
-`;
-
 const TextSection = styled(View)`
   width: 100%;
   align-items: center;
@@ -399,4 +398,35 @@ const TextQuestion = styled(Text)`
   color: #636c76;
   font-weight: 500;
   margin-top: 15px;
+`;
+
+const EditQuestions = styled(View)`
+  width: 100%;
+  height: 500px;
+`;
+
+const ScrollQuestion = styled(ScrollView)`
+  width: 100%;
+  height: 100%;
+`;
+
+const QuestionContainer = styled(View)`
+  width: 90%;
+  height: 50px;
+  background-color: #e3e3e3;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 5px;
+`;
+
+const QuestionTitle = styled(Text)`
+  font-size: 14px;
+  font-weight: bold;
+  color: #636c76;
+`;
+
+const QuestionText = styled(Text)`
+  font-size: 12px;
+  color: #636c76;
+  margin-top: 3px;
 `;
