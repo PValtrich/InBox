@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, SafeAreaView } from "react-native";
+import { FlatList, Pressable, SafeAreaView, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import Header from "@/components/Header";
 import { Icon } from 'react-native-elements';
@@ -351,25 +351,27 @@ const DATA: DataItem[] = [
 ];
 
 const Item: React.FC<{ color: string, linkPage: string, studyText: string }> = ({ color, linkPage, studyText }) => (
-    <ContainerLink
-    href={{
-      pathname: "/(about)",
-      params: {
-        area: linkPage,
-        studyText: studyText
+    <TouchOpacityContainer>
+        <ContainerLink
+        href={{
+        pathname: "/(about)",
+        params: {
+            area: linkPage,
+            studyText: studyText
       },
     }}
-    asChild
+        asChild
   >
-    <ItemContainer
-      style={{
-        backgroundColor: color,
-        width: 300,
-        height: 200,
-        marginTop: 20,
+        <ItemContainer
+            style={{
+            backgroundColor: color,
+            width: 300,
+            height: 200,
+            marginTop: 20,
       }}
     />
-  </ContainerLink>
+        </ContainerLink>
+  </TouchOpacityContainer>
 );
 
 const Home: React.FC = () => {
@@ -385,6 +387,8 @@ const Home: React.FC = () => {
                         Este teste foi criado para avaliar seu nível de conhecimento em química e ajudá-lo a identificar seus pontos fortes e áreas que precisam de mais atenção. É uma ferramenta valiosa para medir o quanto você já aprendeu e onde pode focar seus estudos.
                     </Description>
                     <SafeAreaView style={{width: '100%'}}>
+
+                     
                     <FlatList
                         data={DATA}
                         renderItem={({ item }) => <Item color={item.color} linkPage={item.linkPage} studyText={item.studyText}/>}
@@ -469,7 +473,7 @@ const ItemContainer = styled.View`
     width: 100px;
     height: 100px;
     border-radius: 10px;
-    margin: 0 10px;
+    margin: 0px 10px;
 `
 
 const ProjectSection = styled.View`
@@ -481,8 +485,8 @@ const ProjectSection = styled.View`
 const IconWrapper = styled.View`
     width: 130px;
     height: 130px;
-    background: #A5D5EB;
-    border-radius: 50%;
+    background: rgb(165, 213, 235);
+    border-radius: 100px;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
@@ -505,6 +509,9 @@ const SectionDescription = styled.Text`
 
 const ContainerLink = styled(ExpoRouterLink)`
     flex: 1;
+`
+
+const TouchOpacityContainer = styled(TouchableOpacity)`
 `
 
 export default Home;

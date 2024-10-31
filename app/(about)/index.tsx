@@ -65,7 +65,7 @@ export default function About() {
                     <Icon name='science' color={'#636C76'} size={35} />
                     <SectionTitle>SOBRE {area}</SectionTitle>
                 </BoxTitle>
-
+                
                 <SectionAbout>
                     <StudyOf>
                         <HeaderContainer>
@@ -180,7 +180,7 @@ const SectionAbout = styled.View`
     width: 100%;
     justify-content: center;
     align-items: center;
-    margin: 30px 0;
+    margin: 30px 0px;
 `;
 
 const StudyOf = styled.View`
@@ -233,7 +233,7 @@ const HeaderWithIcon = styled.View`
 `;
 
 const TipsContainer = styled.View`
-    margin: 20px 0 30px;
+    margin: 20px 0px 30px;
 `;
 
 const QuestText = styled.Text`

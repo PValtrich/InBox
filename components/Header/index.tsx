@@ -6,8 +6,6 @@ import { Link as ExpoRouterLink } from 'expo-router';
 export default function Header() {
     return (
         <StyledHeader>
-            <IconContainer>
-            </IconContainer>
 
             <TittleHeader>Química InBox</TittleHeader>
 
@@ -44,6 +42,7 @@ const TittleHeader = styled.Text`
     font-size: 20px;
     color: #636C76;
     text-align: center;
+    margin-right: -30px;
 `;
 
 const ButtonLink = styled(ExpoRouterLink)`

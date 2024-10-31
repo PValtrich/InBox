@@ -10,7 +10,6 @@ import
 }
 from "react-native";
 import styled from "styled-components/native";
-import Svg, { Path } from "react-native-svg";
 import { Icon } from "react-native-elements";
 
 export default function PageTeacher() {
@@ -49,12 +48,12 @@ export default function PageTeacher() {
           {/* Card Add */}
         <CardLink>
           <WaveBackground>
-            <Svg height="100%" width="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            {/* <Svg height="100%" width="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
               <Path
                 fill="#00CFFD"
                 d="M0,0L48,32C96,64,192,128,288,144C384,160,480,128,576,122.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
               />
-            </Svg>
+            </Svg> */}
             <ImageContainer>
               <Image
                 source={require("../../assets/images/IconsM/Question.png")}
@@ -68,12 +67,12 @@ export default function PageTeacher() {
           {/* Card Edit */}
         <CardLink>
           <WaveBackground>
-            <Svg height="100%" width="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            {/* <Svg height="100%" width="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
               <Path
                 fill="#9B51E0"
                 d="M0,0L48,32C96,64,192,128,288,144C384,160,480,128,576,122.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
               />
-            </Svg>
+            </Svg> */}
             <ImageContainer>
               <Image
                 source={require("../../assets/images/IconsM/Edit.png")}
@@ -301,8 +300,8 @@ const CardLink = styled(View)`
 
 const WaveBackground = styled(View)`
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 0px;
+  left: 0px;
   width: 100%;
   height: 75%;
 `;
@@ -321,8 +320,8 @@ const CardText = styled(Text)`
   font-weight: bold;
   position: absolute;
   bottom: 10px;
-  left: 0;
-  right: 0;
+  left: 0px;
+  right: 0px;
   text-align: center;
 `;
 
