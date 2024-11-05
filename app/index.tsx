@@ -351,14 +351,6 @@ const DATA: DataItem[] = [
         studyText: 'A Química Orgânica é o estudo de compostos baseados em carbono, fundamentais para entender processos biológicos e a síntese de novos materiais. Ela investiga a estrutura, propriedades e reatividade de moléculas como hidrocarbonetos, álcoois, aldeídos, ácidos e polímeros. Com aplicações na indústria farmacêutica, petroquímica e de biotecnologia, essa área é essencial para o desenvolvimento de novos medicamentos, plásticos e combustíveis.'},
 ];
 
-console.log(DATA)
-
-// const router = useRouter();
-
-// const Navigationd = () => {
-//     router.push({pathname: '/(about)', params: {id: '1', nome: 'Atom'}})
-// }
-
 const Item: React.FC<{ color: string, linkPage: string, studyText: string }> = ({ color, linkPage, studyText }) => (
         <ContainerLink
             href={{

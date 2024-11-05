@@ -19,7 +19,6 @@ if (Platform.OS === 'android') {
 export default function About() {
 
     const { area, studyText } = useLocalSearchParams<{ area: string; studyText: string }>(); //params area
-    // const {studyText} = useLocalSearchParams<{studyText: string}>() //params studyText
     {console.log(area, studyText)}
 
     const [isTipsVisible, setIsTipsVisible] = useState(true);
@@ -37,7 +36,6 @@ export default function About() {
     ];
 
     const numColumns = 2;
-    // const { id, nome } = useLocalSearchParams<{ id: string; nome: string }>();
 
     const Card = ({ title }: { title: string }) => (
         <View style={{
