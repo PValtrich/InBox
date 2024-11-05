@@ -65,7 +65,7 @@ export default function PageTeacher() {
           <CardText>ADICIONAR QUESTÕES</CardText>
         </CardLink>
           {/* Card Edit */}
-        <CardLink>
+        <CardLink style={{backgroundColor: '#9548E2'}}>
           <WaveBackground>
             {/* <Svg height="100%" width="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
               <Path
@@ -286,16 +286,16 @@ const TopicLink = styled(View)`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  gap: 5%;
 `;
 
 const CardLink = styled(View)`
   width: 180px;
   height: 100%;
-  background-color: #f7f7f7;
+  background-color: #48D0E2;
   border-radius: 5px;
   position: relative;
   overflow: hidden;
+  margin: 10px;
 `;
 
 const WaveBackground = styled(View)`
@@ -333,7 +333,7 @@ const BoxTitle = styled(View)`
   align-items: center;
   padding: 10px;
   flex-direction: row;
-  gap: 5px;
+  /* gap: 5px; */
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   margin-top: 15px;

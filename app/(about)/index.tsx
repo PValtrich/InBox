@@ -18,8 +18,10 @@ if (Platform.OS === 'android') {
 
 export default function About() {
 
-    const { area } = useLocalSearchParams<{ area: string; studyText: string }>(); //params area
-    const {studyText} = useLocalSearchParams<{studyText: string}>() //params studyText
+    const { area, studyText } = useLocalSearchParams<{ area: string; studyText: string }>(); //params area
+    // const {studyText} = useLocalSearchParams<{studyText: string}>() //params studyText
+    {console.log(area, studyText)}
+
     const [isTipsVisible, setIsTipsVisible] = useState(true);
 
     const toggleTipsVisibility = () => {
@@ -35,6 +37,7 @@ export default function About() {
     ];
 
     const numColumns = 2;
+    // const { id, nome } = useLocalSearchParams<{ id: string; nome: string }>();
 
     const Card = ({ title }: { title: string }) => (
         <View style={{
@@ -171,9 +174,9 @@ const BoxTitle = styled.View`
     align-items: center;
     padding: 10px;
     flex-direction: row;
-    gap: 5px;
+    /* gap: 5px; */
     border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-right-radius: 10px; 
 `;
 
 const SectionAbout = styled.View`
@@ -251,7 +254,7 @@ const Cicle = styled.View`
     width: 35px;
     height: 35px;
     background-color: #A5D5EB;
-    border-radius: 50%;
+    border-radius: 100px;
     font-size: 20px;
     color: #636C76;
     margin-right: 20px;

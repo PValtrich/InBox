@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import Header from "@/components/Header";
 import { Icon } from 'react-native-elements';
 import { Link as ExpoRouterLink } from 'expo-router';
+import { useRouter } from 'expo-router';
 
 interface DataItem {
     id: string;
@@ -350,28 +351,30 @@ const DATA: DataItem[] = [
         studyText: 'A Química Orgânica é o estudo de compostos baseados em carbono, fundamentais para entender processos biológicos e a síntese de novos materiais. Ela investiga a estrutura, propriedades e reatividade de moléculas como hidrocarbonetos, álcoois, aldeídos, ácidos e polímeros. Com aplicações na indústria farmacêutica, petroquímica e de biotecnologia, essa área é essencial para o desenvolvimento de novos medicamentos, plásticos e combustíveis.'},
 ];
 
+console.log(DATA)
+
+// const router = useRouter();
+
+// const Navigationd = () => {
+//     router.push({pathname: '/(about)', params: {id: '1', nome: 'Atom'}})
+// }
+
 const Item: React.FC<{ color: string, linkPage: string, studyText: string }> = ({ color, linkPage, studyText }) => (
-    <TouchOpacityContainer>
         <ContainerLink
-        href={{
-        pathname: "/(about)",
-        params: {
-            area: linkPage,
-            studyText: studyText
-      },
-    }}
-        asChild
-  >
-        <ItemContainer
-            style={{
-            backgroundColor: color,
-            width: 300,
-            height: 200,
-            marginTop: 20,
-      }}
-    />
+            href={{
+            pathname: "/(about)",
+            params: {
+                area: linkPage,
+                studyText: studyText
+            }}} asChild >
+            <ItemContainer
+                style={{
+                backgroundColor: color,
+                width: 300,
+                height: 200,
+                marginTop: 20,
+            }} />
         </ContainerLink>
-  </TouchOpacityContainer>
 );
 
 const Home: React.FC = () => {
@@ -469,7 +472,7 @@ const Description = styled.Text`
     text-align: center;
 `
 
-const ItemContainer = styled.View`
+const ItemContainer = styled.Pressable`
     width: 100px;
     height: 100px;
     border-radius: 10px;
@@ -509,9 +512,6 @@ const SectionDescription = styled.Text`
 
 const ContainerLink = styled(ExpoRouterLink)`
     flex: 1;
-`
-
-const TouchOpacityContainer = styled(TouchableOpacity)`
 `
 
 export default Home;

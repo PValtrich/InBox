@@ -53,11 +53,12 @@ export default function PageLogin() {
                             </SectionInput>
                         </ConstInputs>
 
-                        <LogLink>
-                            <EnterButton href="/(teacher)">
+                        <LogLink href="/(teacher)">
+                            <EnterButton>
                                 <Text style={{ color: '#fff' }}>ENTRAR</Text>
                             </EnterButton>
                         </LogLink>
+                        
                     </Container>
                 </CampViewLogin>
             </CampLog>
@@ -135,7 +136,7 @@ const VisibilityToggle = styled.TouchableOpacity`
     padding: 10px;
 `;
 
-const EnterButton = styled(ExpoRouterLink)`
+const EnterButton = styled.View`
     height: 45px;
     width: 300px;
     background-color: #45C7C9;
@@ -145,5 +146,5 @@ const EnterButton = styled(ExpoRouterLink)`
     border-radius: 5px;
 `;
 
-const LogLink = styled.TouchableOpacity`
+const LogLink = styled(ExpoRouterLink)`
 `
