@@ -20,7 +20,8 @@ export default function RootLayout() {
       <Stack.Screen name="(login)/index" options={{headerTitle: 'VOLTAR'}}/>
       <Stack.Screen name="(about)/index" options={{headerTitle: 'VOLTAR'}}/>
       <Stack.Screen name="(teacher)/index" options={{headerShown: false}}/>
-      <Stack.Screen name="(Question)/index" options={{headerTitle: 'VOLTAR'}}/>
+      <Stack.Screen name="(question)/index" options={{headerTitle: 'VOLTAR'}}/>
+      <Stack.Screen name="(result)/index" options={{headerTitle: 'VOLTAR'}}/>
     </Stack>
   );
 }

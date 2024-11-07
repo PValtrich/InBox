@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import { Pressable, Text, TouchableOpacity } from "react-native";
+import { Text } from "react-native";
 import { Icon } from 'react-native-elements';
 import { Link as ExpoRouterLink } from 'expo-router'
 

@@ -1,10 +1,9 @@
 import React from "react";
-import { FlatList, Pressable, SafeAreaView, TouchableOpacity } from "react-native";
+import { FlatList, SafeAreaView } from "react-native";
 import styled from "styled-components/native";
 import Header from "@/components/Header";
-import { Icon } from 'react-native-elements';
 import { Link as ExpoRouterLink } from 'expo-router';
-import { useRouter } from 'expo-router';
+import { Icon } from 'react-native-elements';
 
 interface DataItem {
     id: string;
@@ -14,325 +13,244 @@ interface DataItem {
 }
 
 export type Testes = {
-    id: string,
-    image: string,
-    title: string,
-    text: string,
-    matter: number
+    id: string;
+    image: string;
+    title: string;
+    text: string;
+    matter: number;
 }
 
-const TestAtom: Testes[] = [{
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    image: '',
-    title: 'Modelos atômicos',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 1
-},
-{
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    image: '',
-    title: 'Estrutura Atômica',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 2
-},
-{
-    id: '3ac68afc-c5-48d3-a4f8-fbd91af63',
-    image: '',
-    title: 'Configuração eletrônica',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 3
-},
-{
-    id: '3acafc-c605-48d3-a4f8-fbd91a7f63',
-    image: '',
-    title: 'Radioatividade',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 4
-}]
-
-const TestQuimGeral: Testes[] = [{
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb2a',
-    image: '',
-    title: 'Propriedades da matéria',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 5
-},
-{
-    id: '3ac68afc-c605-4d3-a4f8-fbd91aa97f63',
-    image: '',
-    title: 'Substâncias químicas',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 6
-},
-{
-    id: '3ac68afc-c5-48d3-a4f8-fbd91aa97f63',
-    image: '',
-    title: 'Separação de misturas',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 7
-},
-{
-    id: '3ac68afc-c605-48d3-a4f8-fbd91a7f63',
-    image: '',
-    title: 'Tabela periódica',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 8
-},
-{
-    id: '3a768afc-c605-48d3-a4f8-fbd91a7f63',
-    image: '',
-    title: 'Propriedades periódicas',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 9
-},
-{
-    id: '3ac68afc-c605-486523-a4f8-fbd91a7f63',
-    image: '',
-    title: 'Ligações químicas',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 10
-},
-{
-    id: '3ac64sg88afc-c605-48d3-a4f8-fbd91a7f63',
-    image: '',
-    title: 'Geometria molecular e Polaridade',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 11
-},
-{
-    id: '3ac68afc-c605-48dsrbhthsra7f63',
-    image: '',
-    title: 'Forças intermoleculares',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 12
-},
-{
-    id: '3adfrvare8afc-c605-48d3-a4f8-fbd91a7f63',
-    image: '',
-    title: 'Leis ponderais',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 13
-},
-{
-    id: '3ac68afc-c60vfdb48d3-a4f8-fbd91a7f63',
-    image: '',
-    title: 'Reações químicas',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 14
-},
-{
-    id: '3adsv8afc-c605-48d3-a4f8-fbd91a7f63',
-    image: '',
-    title: 'Quantidade de matéria',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 15
-},
-{
-    id: '87ac68afc-c605-48d3-a4f8-fbd91a7f63',
-    image: '',
-    title: 'Gases e transformações gasosas',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 16
-},
-{
-    id: '625ac68afc-c605-48d3-a4f8-fbd91a7f63',
-    image: '',
-    title: 'Estequiometria',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 17
-}]
-
-const TestInor: Testes[] = [{
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    image: '../../assets/images/Icons/lattice.png',
-    title: 'Ácidos',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 18
-},
-{
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    image: '../../assets/images/Icons/lattice.png',
-    title: 'Bases',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 19
-},
-{
-    id: '3ac68afc-c5-48d3-a4f8-fbd91aa97f63',
-    image: '../../assets/images/Icons/lattice.png',
-    title: 'Sais',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 20
-},
-{
-    id: '3ac68afc-c605-48d3-a4f8-fbd91a7f63',
-    image: '../../assets/images/Icons/lattice.png',
-    title: 'Óxidos',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 21
-},
-{
-    id: '3ac68afc5-48d3-a4f8-fbd91aa97f63',
-    image: '../../assets/images/Icons/lattice.png',
-    title: 'Reações Inorgânicas',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 22
-},]
-
-const TestFisiQuimi: Testes[] = [{
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    image: '../../assets/images/Icons/science.png',
-    title: 'Soluções',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 23
-},
-{
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    image: '../../assets/images/Icons/science.png',
-    title: 'Diluição e misturas de soluções',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 24
-},
-{
-    id: '3ac68afc-c5-48d3-a4f8-fbd91aa97f63',
-    image: '../../assets/images/Icons/science.png',
-    title: 'Termoquímica',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 25
-},
-{
-    id: '3ac68afc-c605-48d3-a4f8-fbd91a7f63',
-    image: '../../assets/images/Icons/science.png',
-    title: 'Cinética Química',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 26
-},
-{
-    id: '3ac68asdac605-48d3-a4f8-fbd91a7f63',
-    image: '../../assets/images/Icons/science.png',
-    title: 'Equilíbrio Químico',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 27
-},
-{
-    id: '3ac68afc-c605-48d3-a4f8-f5bd91a63',
-    image: '../../assets/images/Icons/science.png',
-    title: 'Equilíbrio Iônico',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 28
-},
-{
-    id: 'ac6afc-c605-48d3-a4f8-çbd91a7f63',
-    image: '../../assets/images/Icons/science.png',
-    title: 'pH e pOH',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 29
-},
-{
-    id: '3ac68afc-chjs-48d3-a4f8-fbd91a7f63',
-    image: '../../assets/images/Icons/science.png',
-    title: 'Equilíbrio Heterogêneo',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 30
-},
-{
-    id: '7ac68afc-c605-4vv4f8-fbd91a7f63',
-    image: '../../assets/images/Icons/science.png',
-    title: 'Processos de Óxido-redução',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 31
-},
-{
-    id: '3ac68afc-7sdf5-48d3-a4f8-fbd91a7f63',
-    image: '../../assets/images/Icons/science.png',
-    title: 'Pilhas (Celas Galvânicas)',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 32
-},
-{
-    id: '3ac68afc-c605-48895-a4f8-fbd91a7f63',
-    image: '../../assets/images/Icons/science.png',
-    title: 'Eletrólise (Celas eletrolíticas)',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 33
-}]
-
-const TestOrga: Testes[] = [{
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    image: '../../assets/images/Icons/molecule.png',
-    title: 'Cadeias Carbônicas',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 34
-},
-{
-    id: '3ac6ds-c605-48d3-a4f8-fbd91aa97f63',
-    image: '../../assets/images/Icons/molecule.png',
-    title: 'Hidrocarbonetos',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 35
-},
-{
-    id: '3ac68afc-c5-48d38958-fbd91aa97f63',
-    image: '../../assets/images/Icons/molecule.png',
-    title: 'Funções Oxigenadas',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 36
-},
-{
-    id: '3ac68afc-frhm-48d3-a4f8-fbd91a7f63',
-    image: '../../assets/images/Icons/molecule.png',
-    title: 'Funções Nitrogenadas e Halogenadas',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 37
-},
-{
-    id: '3ac68afc-c605-48d3tyd91a7f63',
-    image: '../../assets/images/Icons/molecule.png',
-    title: 'Propriedades Físicas dos Compostos Orgânicos',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 38
-},{
-    id: '3ac68afc-c605-48d3-a47jfnfbd91a7f63',
-    image: '../../assets/images/Icons/molecule.png',
-    title: 'Isomeria Constitucional (plana)',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 39
-},{
-    id: '3a35rth6fc-c605-48d3-a4f8-fbd91a7f63',
-    image: '../../assets/images/Icons/molecule.png',
-    title: 'Isomeria Espacial (geométrica e óptica)',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 40
-},{
-    id: '3ac68afcgfd63-a4f8-fbd91a7f63',
-    image: '../../assets/images/Icons/molecule.png',
-    title: 'Reações de Substituição e Adição',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 41
-},{
-    id: '3erttyc605-48d3-a4f8-fbd91a7f63',
-    image: '../../assets/images/Icons/molecule.png',
-    title: 'Reações de Eliminação',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 42
-},{
-    id: '3ac68afc09-48d3-a4f8-fbd91a7f63',
-    image: '../../assets/images/Icons/molecule.png',
-    title: 'Reações de Oxido-redução ',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 43
-},{
-    id: '3ac68afc-c605-48d3-a467fbd91a7f63',
-    image: '../../assets/images/Icons/molecule.png',
-    title: 'Polímeros e reações de polimerização',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 44
-},{
-    id: '3ac68af7505-48d3-a4f8-fbd91a7f63',
-    image: '../../assets/images/Icons/molecule.png',
-    title: 'Bioquímica',
-    text: 'A atomística é a parte da Química que trata do estudo do átomo e suas características.',
-    matter: 45
-}]
+const TestAtom: Testes[] = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      image: '',
+      title: 'Modelos atômicos',
+      text: 'A atomística estuda o átomo e suas características.',
+      matter: 1
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      image: '',
+      title: 'Estrutura Atômica',
+      text: 'A estrutura atômica envolve a organização das partículas subatômicas.',
+      matter: 2
+    },
+    {
+      id: '3ac68afc-c5-48d3-a4f8-fbd91aa97f63',
+      image: '',
+      title: 'Configuração eletrônica',
+      text: 'A configuração eletrônica descreve como os elétrons estão distribuídos em torno do núcleo.',
+      matter: 3
+    },
+    {
+      id: '3acafc-c605-48d3-a4f8-fbd91a7f63',
+      image: '',
+      title: 'Radioatividade',
+      text: 'Radioatividade é o processo pelo qual átomos instáveis emitem radiação.',
+      matter: 4
+    }
+  ];
+  
+  const TestQuimGeral: Testes[] = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb2a',
+      image: '',
+      title: 'Propriedades da matéria',
+      text: 'As propriedades da matéria determinam o comportamento físico e químico dos materiais.',
+      matter: 5
+    },
+    {
+      id: '3ac68afc-c605-4d3-a4f8-fbd91aa97f63',
+      image: '',
+      title: 'Substâncias químicas',
+      text: 'Substâncias químicas são compostos com propriedades específicas que não mudam sem uma reação química.',
+      matter: 6
+    },
+    {
+      id: '3ac68afc-c5-48d3-a4f8-fbd91aa97f63',
+      image: '',
+      title: 'Separação de misturas',
+      text: 'Existem diversos métodos para separar componentes de misturas, como filtragem e destilação.',
+      matter: 7
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91a7f63',
+      image: '',
+      title: 'Tabela periódica',
+      text: 'A tabela periódica organiza os elementos químicos com base em suas propriedades e estrutura.',
+      matter: 8
+    },
+    {
+      id: '3a768afc-c605-48d3-a4f8-fbd91a7f63',
+      image: '',
+      title: 'Propriedades periódicas',
+      text: 'As propriedades periódicas, como raio atômico e eletronegatividade, variam de acordo com a posição dos elementos na tabela.',
+      matter: 9
+    },
+    {
+      id: '3ac68afc-c605-486523-a4f8-fbd91a7f63',
+      image: '',
+      title: 'Ligações químicas',
+      text: 'Ligações químicas ocorrem quando átomos compartilham ou transferem elétrons para alcançar estabilidade.',
+      matter: 10
+    },
+    {
+      id: '3ac64sg88afc-c605-48d3-a4f8-fbd91a7f63',
+      image: '',
+      title: 'Geometria molecular e Polaridade',
+      text: 'A geometria molecular define a forma das moléculas, enquanto a polaridade está relacionada à distribuição dos elétrons.',
+      matter: 11
+    },
+    {
+      id: '3ac68afc-c605-48dsrbhthsra7f63',
+      image: '',
+      title: 'Forças intermoleculares',
+      text: 'Forças intermoleculares são as interações entre moléculas que influenciam suas propriedades físicas.',
+      matter: 12
+    },
+    {
+      id: '3adfrvare8afc-c605-48d3-a4f8-fbd91a7f63',
+      image: '',
+      title: 'Leis ponderais',
+      text: 'As leis ponderais tratam das relações quantitativas nas reações químicas, como as leis de Lavoisier e Proust.',
+      matter: 13
+    },
+    {
+      id: '3ac68afc-c60vfdb48d3-a4f8-fbd91a7f63',
+      image: '',
+      title: 'Reações químicas',
+      text: 'Reações químicas envolvem a transformação de substâncias em novas substâncias com diferentes propriedades.',
+      matter: 14
+    },
+    {
+      id: '3adsv8afc-c605-48d3-a4f8-fbd91a7f63',
+      image: '',
+      title: 'Quantidade de matéria',
+      text: 'A quantidade de matéria é uma medida relacionada à quantidade de átomos ou moléculas presentes em uma substância.',
+      matter: 15
+    },
+    {
+      id: '87ac68afc-c605-48d3-a4f8-fbd91a7f63',
+      image: '',
+      title: 'Gases e transformações gasosas',
+      text: 'O estudo dos gases envolve suas propriedades e as transformações que ocorrem com variações de temperatura e pressão.',
+      matter: 16
+    },
+    {
+      id: '625ac68afc-c605-48d3-a4f8-fbd91a7f63',
+      image: '',
+      title: 'Estequiometria',
+      text: 'A estequiometria calcula as quantidades de reagentes e produtos em uma reação química.',
+      matter: 17
+    }
+  ];
+  
+  const TestInor: Testes[] = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      image: '../../assets/images/Icons/lattice.png',
+      title: 'Ácidos',
+      text: 'Ácidos são compostos que liberam íons hidrogênio (H+) em solução.',
+      matter: 18
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      image: '../../assets/images/Icons/lattice.png',
+      title: 'Bases',
+      text: 'Bases são compostos que liberam íons hidróxido (OH-) em solução.',
+      matter: 19
+    },
+    {
+      id: '3ac68afc-c5-48d3-a4f8-fbd91aa97f63',
+      image: '../../assets/images/Icons/lattice.png',
+      title: 'Sais',
+      text: 'Sais são compostos formados pela reação de um ácido com uma base.',
+      matter: 20
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91a7f63',
+      image: '../../assets/images/Icons/lattice.png',
+      title: 'Óxidos',
+      text: 'Óxidos são compostos formados pela reação de um elemento com oxigênio.',
+      matter: 21
+    },
+    {
+      id: '3ac68afc5-48d3-a4f8-fbd91aa97f63',
+      image: '../../assets/images/Icons/lattice.png',
+      title: 'Reações Inorgânicas',
+      text: 'Reações inorgânicas envolvem a transformação de substâncias sem a participação de compostos orgânicos.',
+      matter: 22
+    }
+  ];
+  
+  const TestFisiQuimi: Testes[] = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      image: '../../assets/images/Icons/science.png',
+      title: 'Soluções',
+      text: 'Soluções são misturas homogêneas de dois ou mais compostos.',
+      matter: 23
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      image: '../../assets/images/Icons/science.png',
+      title: 'Diluição e misturas de soluções',
+      text: 'Diluição é o processo de reduzir a concentração de uma solução.',
+      matter: 24
+    },
+    {
+      id: '3ac68afc-c5-48d3-a4f8-fbd91aa97f63',
+      image: '../../assets/images/Icons/science.png',
+      title: 'Termoquímica',
+      text: 'Termoquímica estuda as trocas de calor durante as reações químicas.',
+      matter: 25
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91a7f63',
+      image: '../../assets/images/Icons/science.png',
+      title: 'Cinética Química',
+      text: 'Cinética química estuda a velocidade das reações químicas e os fatores que a influenciam.',
+      matter: 26
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91a7f63',
+      image: '../../assets/images/Icons/science.png',
+      title: 'Equilíbrio químico',
+      text: 'Equilíbrio químico é o estado no qual as taxas de reação direta e reversa são iguais.',
+      matter: 27
+    }
+  ];
+  
+  const TestOrga: Testes[] = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      image: '../../assets/images/Icons/molecule.png',
+      title: 'Cadeias Carbônicas',
+      text: 'As cadeias carbônicas são a espinha dorsal das moléculas orgânicas.',
+      matter: 34
+    },
+    {
+      id: '3ac6ds-c605-48d3-a4f8-fbd91aa97f63',
+      image: '../../assets/images/Icons/molecule.png',
+      title: 'Hidrocarbonetos',
+      text: 'Hidrocarbonetos são compostos formados por carbono e hidrogênio, como alcanos e alcenos.',
+      matter: 35
+    },
+    {
+      id: '3ac68afc-c5-48d3-a4f8-fbd91aa97f63',
+      image: '../../assets/images/Icons/molecule.png',
+      title: 'Funções Oxigenadas',
+      text: 'Funções oxigenadas são grupos funcionais com oxigênio, como álcoois e ácidos.',
+      matter: 36
+    },
+    {
+      id: '3ac68afc-c60vdsbh48d3-a4f8-fbd91a7f63',
+      image: '../../assets/images/Icons/molecule.png',
+      title: 'Funções Nitrogenadas',
+      text: 'Funções nitrogenadas incluem aminas e amidas, compostos que contêm o elemento nitrogênio.',
+      matter: 37
+    }
+  ];  
 
 const DATA: DataItem[] = [
     { id: '1', color: '#FF5733', linkPage: 'ATOMÍSTICA', 
@@ -357,8 +275,14 @@ const Item: React.FC<{ color: string, linkPage: string, studyText: string }> = (
             pathname: "/(about)",
             params: {
                 area: linkPage,
-                studyText: studyText
-            }}} asChild >
+                studyText: studyText,
+                    testatom: JSON.stringify(TestAtom),
+                    testquimgeral: JSON.stringify(TestQuimGeral),
+                    testinor: JSON.stringify(TestInor),
+                    testfisiquimi: JSON.stringify(TestFisiQuimi),
+                    testorga: JSON.stringify(TestOrga),
+                }
+            }} asChild>
             <ItemContainer
                 style={{
                 backgroundColor: color,
@@ -381,9 +305,8 @@ const Home: React.FC = () => {
                     <Description>
                         Este teste foi criado para avaliar seu nível de conhecimento em química e ajudá-lo a identificar seus pontos fortes e áreas que precisam de mais atenção. É uma ferramenta valiosa para medir o quanto você já aprendeu e onde pode focar seus estudos.
                     </Description>
-                    <SafeAreaView style={{width: '100%'}}>
 
-                     
+                    <SafeAreaView style={{width: '100%'}}>
                     <FlatList
                         data={DATA}
                         renderItem={({ item }) => <Item color={item.color} linkPage={item.linkPage} studyText={item.studyText}/>}
@@ -392,8 +315,11 @@ const Home: React.FC = () => {
                         showsHorizontalScrollIndicator={false}
                     />
                     </SafeAreaView>
+
                     <ProjectSection>
-                        <Title>SOBRE O PROJETO:</Title>
+                        <Title>
+                            SOBRE O PROJETO:
+                        </Title>
                         <IconWrapper>
                             <Icon
                                 type="material"
@@ -402,8 +328,12 @@ const Home: React.FC = () => {
                                 color={'#636C76'}
                             />
                         </IconWrapper>
-                        <SectionTitle>NOSSO PROJETO</SectionTitle>
-                        <SectionDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, excepturi.</SectionDescription>
+                        <SectionTitle>
+                            NOSSO PROJETO
+                        </SectionTitle>
+                        <SectionDescription>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, excepturi.
+                        </SectionDescription>
                     </ProjectSection>
 
                     <ProjectSection>
@@ -415,8 +345,12 @@ const Home: React.FC = () => {
                                 color={'#636C76'}
                             />
                         </IconWrapper>
-                        <SectionTitle>NOSSO PROJETO</SectionTitle>
-                        <SectionDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, excepturi.</SectionDescription>
+                        <SectionTitle>
+                            NOSSO PROJETO
+                        </SectionTitle>
+                        <SectionDescription>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, excepturi.
+                        </SectionDescription>
                     </ProjectSection>
 
                     <ProjectSection>
@@ -428,9 +362,14 @@ const Home: React.FC = () => {
                                 color={'#636C76'}
                             />
                         </IconWrapper>
-                        <SectionTitle>NOSSO PROJETO</SectionTitle>
-                        <SectionDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, excepturi.</SectionDescription>
+                        <SectionTitle>
+                            NOSSO PROJETO
+                        </SectionTitle>
+                        <SectionDescription>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, excepturi.
+                        </SectionDescription>
                     </ProjectSection>
+                    
                 </Content>
                 </ScrollView>
         </Container>

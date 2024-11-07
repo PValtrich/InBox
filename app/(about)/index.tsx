@@ -11,6 +11,7 @@ import {
     Platform, 
     FlatList,
 } from "react-native";
+import { Link as ExpoRouterLink } from 'expo-router';
 
 if (Platform.OS === 'android') {
     UIManager.setLayoutAnimationEnabledExperimental?.(true);
@@ -19,7 +20,6 @@ if (Platform.OS === 'android') {
 export default function About() {
 
     const { area, studyText } = useLocalSearchParams<{ area: string; studyText: string }>(); //params area
-    {console.log(area, studyText)}
 
     const [isTipsVisible, setIsTipsVisible] = useState(true);
 
@@ -38,12 +38,12 @@ export default function About() {
     const numColumns = 2;
 
     const Card = ({ title }: { title: string }) => (
+        <LinkPress href='/(question)' style={{margin: 5}}>
         <View style={{
             width: 180,
             height: 265,
             backgroundColor: '#D9D9D9',
             borderRadius: 10,
-            margin: 5
         }}>
             <CardImage>
                 <SubImage>
@@ -51,22 +51,33 @@ export default function About() {
                 </SubImage>
             </CardImage>
             <CardQuestTitleSection>
-                <QuestTitle>{area}</QuestTitle>
-                <SectionTitleQuest>
-                    <TextQuest>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</TextQuest>
-                </SectionTitleQuest>
+                <QuestTitle>{title}</QuestTitle>         
+                    <SectionTitleQuest>
+                    <TextQuest style={{width: 180, height: 60}}>
+                        Lorem ipsum dolor sit amet sit amet amet sit amet sit amet sit amet sit amet sit
+                    </TextQuest>
+                    </SectionTitleQuest>
             </CardQuestTitleSection>
         </View>
+        </LinkPress>
     );
 
+    const{ testatom, testquimgeral, testinor, testfisiquimi, testorga } = useLocalSearchParams<{
+        testatom: string
+        testquimgeral: string
+        testinor: string
+        testfisiquimi: string
+        testorga: string
+    }>();
+    
     return (
         <Container>
             <ScrollView>
                 <BoxTitle>
                     <Icon name='science' color={'#636C76'} size={35} />
                     <SectionTitle>SOBRE {area}</SectionTitle>
-                </BoxTitle>
-                
+                </BoxTitle>  
+
                 <SectionAbout>
                     <StudyOf>
                         <HeaderContainer>
@@ -121,7 +132,7 @@ const renderTips = () => (
     <>
         <SectionQuest>
             <Cicle><Text style={{ fontSize: 20, color: '#636C76' }}>1</Text></Cicle>
-            <QuestText>FAÇA O TESTE EM UM AMBIENTE CALMO</QuestText>
+            <QuestText>FAÇA EM UM AMBIENTE CALMO</QuestText>
         </SectionQuest>
         <StyledText style={{ fontSize: 20 }}>
             Escolha um ambiente tranquilo para fazer o teste, onde você possa se concentrar sem distrações. Isso vai ajudar a garantir que suas respostas reflitam com precisão o que você sabe, sem ser influenciado por fatores externos.        </StyledText>
@@ -307,6 +318,12 @@ const TextQuest = styled.Text`
 `;
 
 const QuestTitle = styled.Text`
+    font-size: 16px;
+    font-weight: 500;
+    color: #636C76;
+`;
+
+const LinkPress = styled(ExpoRouterLink)`
     font-size: 16px;
     font-weight: 500;
     color: #636C76;
