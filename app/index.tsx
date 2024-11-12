@@ -272,14 +272,14 @@ const DATA: DataItem[] = [
         studyText: 'A Química Orgânica é o estudo de compostos baseados em carbono, fundamentais para entender processos biológicos e a síntese de novos materiais. Ela investiga a estrutura, propriedades e reatividade de moléculas como hidrocarbonetos, álcoois, aldeídos, ácidos e polímeros. Com aplicações na indústria farmacêutica, petroquímica e de biotecnologia, essa área é essencial para o desenvolvimento de novos medicamentos, plásticos e combustíveis.', TestCard: TestOrga},
 ];
 
-const Item: React.FC<{ color: string, linkPage: string, studyText: string, TestCard: Testes }> = ({ color, linkPage, studyText, TestCard }) => (
+const Item: React.FC<{ color: string, linkPage: string, studyText: string, testes: Testes[] }> = ({ color, linkPage, studyText, testes }) => (
         <ContainerLink
             href={{
             pathname: "/(about)",
             params: {
                 area: linkPage,
                 studyText: studyText,
-                TestCard: TestCard
+                TestCard: JSON.stringify(testes)
                 }
             }} asChild>
             <ItemContainer
@@ -308,7 +308,14 @@ const Home: React.FC = () => {
                     <SafeAreaView style={{width: '100%'}}>
                     <FlatList
                         data={DATA}
-                        renderItem={({ item }) => <Item color={item.color} linkPage={item.linkPage} studyText={item.studyText}/>}
+                        renderItem={({ item }) => (
+                            <Item 
+                                color={item.color} 
+                                linkPage={item.linkPage} 
+                                studyText={item.studyText} 
+                                testes={item.TestCard} 
+                            />
+                        )}
                         keyExtractor={item => item.id}
                         horizontal
                         showsHorizontalScrollIndicator={false}

@@ -12,18 +12,31 @@ import {
     FlatList,
 } from "react-native";
 import { Link as ExpoRouterLink } from 'expo-router';
-import { DataItem } from "../index";
 
 if (Platform.OS === 'android') {
     UIManager.setLayoutAnimationEnabledExperimental?.(true);
 } 
 
-export default function About() {
+type CardProps = {
+    title: string;
+    image: string;
+    text: string;
+};
 
-    const { area, studyText, TestCard } = useLocalSearchParams<{ area: string; studyText: string, TestCard: DataItem }>(); //params area
-    
-    console.log(TestCard);
-    
+type TestCardItem = {
+    id: string;
+    image: string;
+    title: string;
+    text: string;
+    matter: number;
+};
+
+export default function About() {
+    const { area, studyText, TestCard: testCardString } = useLocalSearchParams<{
+        area: string; 
+        studyText: string; 
+        TestCard: string;
+    }>();
 
     const [isTipsVisible, setIsTipsVisible] = useState(true);
 
@@ -32,48 +45,37 @@ export default function About() {
         setIsTipsVisible(prevState => !prevState);
     };
     
-    const testCards = [
-        { id: '1', title: 'Teste 1', ImgIcon: 'Imagem' },
-        { id: '2', title: 'Teste 2', ImgIcon: 'Imagem' },
-        { id: '3', title: 'Teste 3', ImgIcon: 'Imagem' },
-        { id: '4', title: 'Teste 4', ImgIcon: 'Imagem' },
-    ];
-
     const numColumns = 2;
 
-    const Card = ({ title }: { title: string }) => (
-        <LinkPress href='/(question)' style={{margin: 5}}>
-        <View style={{
-            width: 180,
-            height: 265,
-            backgroundColor: '#D9D9D9',
-            borderRadius: 10,
-        }}>
-            <CardImage>
-                <SubImage>
-                    <ImageIcon source={require('../../assets/images/IconsM/Atomistica.png')} />
-                </SubImage>
-            </CardImage>
-            <CardQuestTitleSection>
-                <QuestTitle>{title}</QuestTitle>         
+    const Card = ({ title, image, text }: CardProps) => (
+        <LinkPress href='/(question)' style={{ margin: 5 }}>
+            <View style={{
+                width: 190,
+                height: 280,
+                backgroundColor: '#D9D9D9',
+                borderRadius: 10,
+            }}>
+                <CardImage>
+                    <SubImage>
+                        {/* <ImageIcon source={require(image)} /> */}
+                    </SubImage>
+                </CardImage>
+                <CardQuestTitleSection>
+                    <QuestTitle>{title}</QuestTitle>         
                     <SectionTitleQuest>
-                    <TextQuest style={{width: 180, height: 60}}>
-                        Lorem ipsum dolor sit amet sit amet amet sit amet sit amet sit amet sit amet sit
-                    </TextQuest>
+                        <TextQuest style={{ width: 180, height: 60 }}>
+                            {text}
+                        </TextQuest>
                     </SectionTitleQuest>
-            </CardQuestTitleSection>
-        </View>
+                </CardQuestTitleSection>
+            </View>
         </LinkPress>
     );
-
-    // const{ testatom, testquimgeral, testinor, testfisiquimi, testorga } = useLocalSearchParams<{
-    //     testatom: string
-    //     testquimgeral: string
-    //     testinor: string
-    //     testfisiquimi: string
-    //     testorga: string
-    // }>();
     
+    // Converte a string JSON de TestCard para uma lista de objetos
+    const parsedTestCard: TestCardItem[] = testCardString ? JSON.parse(testCardString) : [];
+
+    console.log(parsedTestCard);
     
     return (
         <Container>
@@ -120,18 +122,25 @@ export default function About() {
                 </Rules>
 
                 <SectionTeste>
-                    <FlatList
-                        data={testCards}
-                        renderItem={({ item }) => <Card title={item.title} />}
-                        keyExtractor={(item) => item.id}
-                        numColumns={numColumns}
-                        scrollEnabled={false}
-                    />
+                <FlatList
+                    data={parsedTestCard}
+                    renderItem={({ item }) => (
+                        <Card 
+                            title={item.title} 
+                            image={item.image} 
+                            text={item.text} 
+                        />
+                    )}
+                    keyExtractor={(item) => item.id}
+                    numColumns={numColumns}
+                    scrollEnabled={false}
+                />
                 </SectionTeste>
             </ScrollView>
         </Container>
     );
-}    
+}
+
 
 const renderTips = () => (
     <>
@@ -188,7 +197,6 @@ const BoxTitle = styled.View`
     align-items: center;
     padding: 10px;
     flex-direction: row;
-    /* gap: 5px; */
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px; 
 `;
@@ -316,7 +324,7 @@ const SectionTitleQuest = styled.View`
 `;
 
 const TextQuest = styled.Text`
-    font-size: 13px;
+    font-size: 12px;
     text-align: center;
     margin-top: 10px;
     color: #636C76;
