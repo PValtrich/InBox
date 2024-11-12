@@ -12,6 +12,7 @@ import {
     FlatList,
 } from "react-native";
 import { Link as ExpoRouterLink } from 'expo-router';
+import { DataItem } from "../index";
 
 if (Platform.OS === 'android') {
     UIManager.setLayoutAnimationEnabledExperimental?.(true);
@@ -19,7 +20,10 @@ if (Platform.OS === 'android') {
 
 export default function About() {
 
-    const { area, studyText } = useLocalSearchParams<{ area: string; studyText: string }>(); //params area
+    const { area, studyText, TestCard } = useLocalSearchParams<{ area: string; studyText: string, TestCard: DataItem }>(); //params area
+    
+    console.log(TestCard);
+    
 
     const [isTipsVisible, setIsTipsVisible] = useState(true);
 
@@ -62,13 +66,14 @@ export default function About() {
         </LinkPress>
     );
 
-    const{ testatom, testquimgeral, testinor, testfisiquimi, testorga } = useLocalSearchParams<{
-        testatom: string
-        testquimgeral: string
-        testinor: string
-        testfisiquimi: string
-        testorga: string
-    }>();
+    // const{ testatom, testquimgeral, testinor, testfisiquimi, testorga } = useLocalSearchParams<{
+    //     testatom: string
+    //     testquimgeral: string
+    //     testinor: string
+    //     testfisiquimi: string
+    //     testorga: string
+    // }>();
+    
     
     return (
         <Container>
@@ -76,7 +81,7 @@ export default function About() {
                 <BoxTitle>
                     <Icon name='science' color={'#636C76'} size={35} />
                     <SectionTitle>SOBRE {area}</SectionTitle>
-                </BoxTitle>  
+                </BoxTitle>
 
                 <SectionAbout>
                     <StudyOf>
@@ -126,7 +131,7 @@ export default function About() {
             </ScrollView>
         </Container>
     );
-}
+}    
 
 const renderTips = () => (
     <>

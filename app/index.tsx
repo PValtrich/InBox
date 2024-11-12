@@ -5,11 +5,12 @@ import Header from "@/components/Header";
 import { Link as ExpoRouterLink } from 'expo-router';
 import { Icon } from 'react-native-elements';
 
-interface DataItem {
+export type DataItem = {
     id: string;
     color: string;
     linkPage: string;
     studyText: string;
+    TestCard: Testes[]
 }
 
 export type Testes = {
@@ -254,33 +255,31 @@ const TestAtom: Testes[] = [
 
 const DATA: DataItem[] = [
     { id: '1', color: '#FF5733', linkPage: 'ATOMÍSTICA', 
-        studyText: 'A Atomística é a área da química que se dedica ao estudo das partículas fundamentais da matéria: os átomos. Ela envolve a compreensão de como essas partículas são organizadas e estruturadas, abordando modelos atômicos, como os de Dalton, Thomson, Rutherford e Bohr.Além disso, trata da composição do núcleo atômico (prótons e nêutrons), das partículas subatômicas e da distribuição eletrônica, essencial para entender como os átomos interagem e formam moléculas.'},
+        studyText: 'A Atomística é a área da química que se dedica ao estudo das partículas fundamentais da matéria: os átomos. Ela envolve a compreensão de como essas partículas são organizadas e estruturadas, abordando modelos atômicos, como os de Dalton, Thomson, Rutherford e Bohr.Além disso, trata da composição do núcleo atômico (prótons e nêutrons), das partículas subatômicas e da distribuição eletrônica, essencial para entender como os átomos interagem e formam moléculas.',
+        TestCard: TestAtom
+      },
 
     { id: '2', color: '#33FF57', linkPage: 'INORGÂNICA', 
-        studyText: 'A Química Inorgânica foca no estudo de compostos que não são baseados em carbono, como metais, sais, ácidos, bases e óxidos. Ela investiga propriedades, estruturas e reações desses compostos, abrangendo conceitos como ligações iônicas e covalentes, geometria molecular e solubilidade. Essa área é essencial para aplicações como catalisadores industriais, baterias, materiais cerâmicos e síntese de produtos químicos.'},
+        studyText: 'A Química Inorgânica foca no estudo de compostos que não são baseados em carbono, como metais, sais, ácidos, bases e óxidos. Ela investiga propriedades, estruturas e reações desses compostos, abrangendo conceitos como ligações iônicas e covalentes, geometria molecular e solubilidade. Essa área é essencial para aplicações como catalisadores industriais, baterias, materiais cerâmicos e síntese de produtos químicos.', TestCard: TestQuimGeral},
 
     { id: '3', color: '#3357FF', linkPage: 'QUÍMICA GERAL', 
-        studyText: 'A Química Geral fornece os fundamentos para todas as outras áreas da química, abordando conceitos essenciais como estados da matéria, reações químicas e leis ponderais. Essa disciplina ensina a realizar cálculos estequiométricos, interpretar fórmulas químicas e balancear equações, além de estudar transformações físicas e químicas. Ela é indispensável para a compreensão dos princípios básicos que regem o comportamento da matéria e as interações químicas.'},
+        studyText: 'A Química Geral fornece os fundamentos para todas as outras áreas da química, abordando conceitos essenciais como estados da matéria, reações químicas e leis ponderais. Essa disciplina ensina a realizar cálculos estequiométricos, interpretar fórmulas químicas e balancear equações, além de estudar transformações físicas e químicas. Ela é indispensável para a compreensão dos princípios básicos que regem o comportamento da matéria e as interações químicas.', TestCard: TestInor},
 
     { id: '4', color: '#FF33A6', linkPage: 'FÍSICO-QUÍMICA', 
-        studyText: 'A Físico-Química integra conceitos de física e química para entender como energia e matéria interagem em sistemas químicos. Ela aborda tópicos como termodinâmica, cinética química, equilíbrio químico e eletroquímica. Essa área é fundamental para compreender processos naturais e industriais, como produção de energia, reações de combustão e funcionamento de baterias.'},
+        studyText: 'A Físico-Química integra conceitos de física e química para entender como energia e matéria interagem em sistemas químicos. Ela aborda tópicos como termodinâmica, cinética química, equilíbrio químico e eletroquímica. Essa área é fundamental para compreender processos naturais e industriais, como produção de energia, reações de combustão e funcionamento de baterias.', TestCard: TestFisiQuimi},
 
     { id: '5', color: '#FFC300', linkPage: 'ORGÂNICA', 
-        studyText: 'A Química Orgânica é o estudo de compostos baseados em carbono, fundamentais para entender processos biológicos e a síntese de novos materiais. Ela investiga a estrutura, propriedades e reatividade de moléculas como hidrocarbonetos, álcoois, aldeídos, ácidos e polímeros. Com aplicações na indústria farmacêutica, petroquímica e de biotecnologia, essa área é essencial para o desenvolvimento de novos medicamentos, plásticos e combustíveis.'},
+        studyText: 'A Química Orgânica é o estudo de compostos baseados em carbono, fundamentais para entender processos biológicos e a síntese de novos materiais. Ela investiga a estrutura, propriedades e reatividade de moléculas como hidrocarbonetos, álcoois, aldeídos, ácidos e polímeros. Com aplicações na indústria farmacêutica, petroquímica e de biotecnologia, essa área é essencial para o desenvolvimento de novos medicamentos, plásticos e combustíveis.', TestCard: TestOrga},
 ];
 
-const Item: React.FC<{ color: string, linkPage: string, studyText: string }> = ({ color, linkPage, studyText }) => (
+const Item: React.FC<{ color: string, linkPage: string, studyText: string, TestCard: Testes }> = ({ color, linkPage, studyText, TestCard }) => (
         <ContainerLink
             href={{
             pathname: "/(about)",
             params: {
                 area: linkPage,
                 studyText: studyText,
-                    testatom: JSON.stringify(TestAtom),
-                    testquimgeral: JSON.stringify(TestQuimGeral),
-                    testinor: JSON.stringify(TestInor),
-                    testfisiquimi: JSON.stringify(TestFisiQuimi),
-                    testorga: JSON.stringify(TestOrga),
+                TestCard: TestCard
                 }
             }} asChild>
             <ItemContainer

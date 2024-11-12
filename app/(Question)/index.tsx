@@ -33,6 +33,9 @@ export default function Question() {
         }));
     };
 
+    console.log();
+    
+
     return (
         <Container>
             <ScrollView>
