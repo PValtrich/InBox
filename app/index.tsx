@@ -258,7 +258,6 @@ const DATA: DataItem[] = [
         studyText: 'A Atomística é a área da química que se dedica ao estudo das partículas fundamentais da matéria: os átomos. Ela envolve a compreensão de como essas partículas são organizadas e estruturadas, abordando modelos atômicos, como os de Dalton, Thomson, Rutherford e Bohr.Além disso, trata da composição do núcleo atômico (prótons e nêutrons), das partículas subatômicas e da distribuição eletrônica, essencial para entender como os átomos interagem e formam moléculas.',
         TestCard: TestAtom
       },
-
     { id: '2', color: '#33FF57', linkPage: 'INORGÂNICA', 
         studyText: 'A Química Inorgânica foca no estudo de compostos que não são baseados em carbono, como metais, sais, ácidos, bases e óxidos. Ela investiga propriedades, estruturas e reações desses compostos, abrangendo conceitos como ligações iônicas e covalentes, geometria molecular e solubilidade. Essa área é essencial para aplicações como catalisadores industriais, baterias, materiais cerâmicos e síntese de produtos químicos.', TestCard: TestQuimGeral},
 

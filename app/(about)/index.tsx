@@ -72,7 +72,7 @@ export default function About() {
         </LinkPress>
     );
 
-    console.log(testCardString) //Exibe todos params
+    // console.log(testCardString) //Exibe todos params
     
     // Converte a string JSON de TestCard para uma lista de objetos
     const parsedTestCard: TestCardItem[] = testCardString ? JSON.parse(testCardString) : [];

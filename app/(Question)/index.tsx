@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, ActivityIndicator, Alert } from "react-native";
+import { ScrollView, ActivityIndicator } from "react-native";
 import styled from "styled-components/native";
 import { CheckBox } from "react-native-elements";
 import { apiConfig } from "@/utils/axios";
-import { useLocalSearchParams } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 
 type Questao = {
   id: string;
@@ -14,17 +14,17 @@ type Questao = {
   alternativa_c: string;
   alternativa_d: string;
   alternativa_e: string;
-  correta: string; // A letra da resposta correta, por exemplo, "a", "b", etc.
+  correta: string;
   nivel: string;
 };
 
 export default function Question() {
   const [questoes, setQuestoes] = useState<Questao[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selected, setSelected] = useState<{ [key: string]: number | null }>(
-    {}
-  );
-  const [score, setScore] = useState<number | null>(null);
+  const [selected, setSelected] = useState<{ [key: string]: number | null }>({});
+  const [corretas, setCorretas] = useState<Questao[]>([]);
+  const [incorretas, setIncorretas] = useState<Questao[]>([]);
+  const router = useRouter();
   const params = useLocalSearchParams<{ matter: string }>();
 
   useEffect(() => {
@@ -38,7 +38,6 @@ export default function Question() {
 
     console.log("ID da matéria selecionada:", materia);
 
-    // Buscar questões relacionadas à matéria
     apiConfig
       .get(`/teste/${materia}`)
       .then((res) => {
@@ -61,12 +60,12 @@ export default function Question() {
     }));
   };
 
-  const handleSubmit = () => {
-    // Verificar as respostas
-    let correctAnswers = 0;
+  const finalizarTeste = () => {
+    const corretasTemp: Questao[] = [];
+    const incorretasTemp: Questao[] = [];
 
     questoes.forEach((questao) => {
-      const selectedIndex = selected[questao.id];
+      const respostaUsuario = selected[questao.id];
       const alternativas = [
         questao.alternativa_a,
         questao.alternativa_b,
@@ -74,21 +73,27 @@ export default function Question() {
         questao.alternativa_d,
         questao.alternativa_e,
       ];
-      const corretaIndex = ["a", "b", "c", "d", "e"].indexOf(
-        questao.correta.toLowerCase()
-      );
 
-      if (selectedIndex === corretaIndex) {
-        correctAnswers++;
+      if (
+        typeof respostaUsuario === "number" &&
+        alternativas[respostaUsuario] === questao.correta
+      ) {
+        corretasTemp.push(questao);
+      } else {
+        incorretasTemp.push(questao);
       }
     });
 
-    // Mostrar pontuação final
-    setScore(correctAnswers);
-    Alert.alert(
-      "Resultado",
-      `Você acertou ${correctAnswers} de ${questoes.length} questões!`
-    );
+    setCorretas(corretasTemp);
+    setIncorretas(incorretasTemp);
+
+    router.push({
+      pathname: "/(result)",
+      params: {
+        corretas: JSON.stringify(corretasTemp),  // Convertendo os dados para string JSON
+        incorretas: JSON.stringify(incorretasTemp),
+      },
+    });
   };
 
   if (loading) {
@@ -122,13 +127,7 @@ export default function Question() {
                 <StyledTitle>{questao.enunciado}</StyledTitle>
               </SectionTitle>
               <SectionContent>
-                {[
-                  questao.alternativa_a,
-                  questao.alternativa_b,
-                  questao.alternativa_c,
-                  questao.alternativa_d,
-                  questao.alternativa_e,
-                ]
+                {[questao.alternativa_a, questao.alternativa_b, questao.alternativa_c, questao.alternativa_d, questao.alternativa_e]
                   .filter((alt) => alt !== null && alt !== undefined)
                   .map((alt, index) => (
                     <CheckBoxContainer key={index}>
@@ -149,17 +148,13 @@ export default function Question() {
           </Section>
         ))}
 
-        <ButtonContainer>
-          <Button onPress={handleSubmit}>
-            <ButtonText>FINALIZAR TESTE</ButtonText>
-          </Button>
-        </ButtonContainer>
+        <FinalizeButton onPress={finalizarTeste}>
+          <ButtonText>FINALIZAR TESTE</ButtonText>
+        </FinalizeButton>
       </ScrollView>
     </Container>
   );
 }
-
-// Estilos dos componentes
 
 const Container = styled.View`
   flex: 1;
@@ -262,4 +257,14 @@ const LoadingText = styled.Text`
   font-size: 18px;
   color: #636c76;
   margin-top: 10px;
+`;
+
+const FinalizeButton = styled.TouchableOpacity`
+  width: 150px;
+  height: 50px;
+  background-color: #43b05c;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin: 20px auto;
 `;
