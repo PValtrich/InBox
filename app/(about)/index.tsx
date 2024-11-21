@@ -47,8 +47,8 @@ export default function About() {
     
     const numColumns = 2;
 
-    const Card = ({ title, image, text }: CardProps) => (
-        <LinkPress href='/(question)' style={{ margin: 5 }}>
+    const Card = ({ title, image, text, matter }: CardProps & { matter: number }) => (
+        <LinkPress href={{ pathname: '/(question)', params: { matter } }} style={{ margin: 5 }}>
             <View style={{
                 width: 190,
                 height: 280,
@@ -71,11 +71,11 @@ export default function About() {
             </View>
         </LinkPress>
     );
+
+    console.log(testCardString) //Exibe todos params
     
     // Converte a string JSON de TestCard para uma lista de objetos
     const parsedTestCard: TestCardItem[] = testCardString ? JSON.parse(testCardString) : [];
-
-    console.log(parsedTestCard);
     
     return (
         <Container>
@@ -129,6 +129,7 @@ export default function About() {
                             title={item.title} 
                             image={item.image} 
                             text={item.text} 
+                            matter={item.matter} 
                         />
                     )}
                     keyExtractor={(item) => item.id}
