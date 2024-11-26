@@ -5,16 +5,16 @@ import { CheckBox } from "react-native-elements";
 import { apiConfig } from "@/utils/axios";
 import { useRouter, useLocalSearchParams } from "expo-router";
 
-type Questao = {
+export type Questao = {
   id: string;
   enunciado: string;
-  imagem: string;
+  imagem: string; // URL da imagem vinda do banco
   alternativa_a: string;
   alternativa_b: string;
   alternativa_c: string;
   alternativa_d: string;
   alternativa_e: string;
-  correta: string;
+  correta: string; // Assume que é "a", "b", "c", etc.
   nivel: string;
 };
 
@@ -22,10 +22,10 @@ export default function Question() {
   const [questoes, setQuestoes] = useState<Questao[]>([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState<{ [key: string]: number | null }>({});
-  const [corretas, setCorretas] = useState<Questao[]>([]);
-  const [incorretas, setIncorretas] = useState<Questao[]>([]);
   const router = useRouter();
   const params = useLocalSearchParams<{ matter: string }>();
+
+  const allQuestionsAnswered = Object.keys(selected).length === questoes.length;
 
   useEffect(() => {
     const materia = params.matter;
@@ -66,31 +66,21 @@ export default function Question() {
 
     questoes.forEach((questao) => {
       const respostaUsuario = selected[questao.id];
-      const alternativas = [
-        questao.alternativa_a,
-        questao.alternativa_b,
-        questao.alternativa_c,
-        questao.alternativa_d,
-        questao.alternativa_e,
-      ];
-
-      if (
-        typeof respostaUsuario === "number" &&
-        alternativas[respostaUsuario] === questao.correta
-      ) {
+      const indexCorreta = questao.correta.charCodeAt(0) - 97; // "a" -> 0, "b" -> 1, etc.
+      if (respostaUsuario === indexCorreta) {
         corretasTemp.push(questao);
       } else {
         incorretasTemp.push(questao);
       }
     });
 
-    setCorretas(corretasTemp);
-    setIncorretas(incorretasTemp);
+    console.log("Corretas:", corretasTemp);
+    console.log("Incorretas:", incorretasTemp);
 
     router.push({
       pathname: "/(result)",
       params: {
-        corretas: JSON.stringify(corretasTemp),  // Convertendo os dados para string JSON
+        corretas: JSON.stringify(corretasTemp),
         incorretas: JSON.stringify(incorretasTemp),
       },
     });
@@ -126,6 +116,15 @@ export default function Question() {
               <SectionTitle>
                 <StyledTitle>{questao.enunciado}</StyledTitle>
               </SectionTitle>
+
+              {/* Renderizando a imagem apenas se a URL não for vazia */}
+              {questao.imagem && questao.imagem.trim() !== "" && (
+                <QuestionImage
+                  source={{ uri: questao.imagem }}
+                  resizeMode="contain"
+                />
+              )}
+
               <SectionContent>
                 {[questao.alternativa_a, questao.alternativa_b, questao.alternativa_c, questao.alternativa_d, questao.alternativa_e]
                   .filter((alt) => alt !== null && alt !== undefined)
@@ -148,13 +147,25 @@ export default function Question() {
           </Section>
         ))}
 
-        <FinalizeButton onPress={finalizarTeste}>
-          <ButtonText>FINALIZAR TESTE</ButtonText>
+        <FinalizeButton
+          onPress={finalizarTeste}
+          disabled={!allQuestionsAnswered}
+        >
+          <ButtonText>
+            {allQuestionsAnswered ? "FINALIZAR TESTE" : "RESPONDA TODAS AS QUESTÕES"}
+          </ButtonText>
         </FinalizeButton>
       </ScrollView>
     </Container>
   );
 }
+
+const QuestionImage = styled.Image`
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+`;
 
 const Container = styled.View`
   flex: 1;
@@ -225,19 +236,14 @@ const ButtonText = styled.Text`
   align-items: center;
 `;
 
-const Button = styled.TouchableOpacity`
+const FinalizeButton = styled.TouchableOpacity<{ disabled: boolean }>`
   width: 150px;
   height: 50px;
-  background-color: #43b05c;
+  background-color: ${(props) => (props.disabled ? "#c4c4c4" : "#43b05c")};
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-`;
-
-const ButtonContainer = styled.View`
-  align-items: center;
-  margin-top: 20px;
-  margin-bottom: 50px;
+  margin: 20px auto;
 `;
 
 const LoadingContainer = styled.View`
@@ -257,14 +263,4 @@ const LoadingText = styled.Text`
   font-size: 18px;
   color: #636c76;
   margin-top: 10px;
-`;
-
-const FinalizeButton = styled.TouchableOpacity`
-  width: 150px;
-  height: 50px;
-  background-color: #43b05c;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  margin: 20px auto;
 `;

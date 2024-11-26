@@ -1,15 +1,26 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useLocalSearchParams } from "expo-router";
+import { Questao } from "../(question)";
 
 const ResultScreen = () => {
-  const { corretas, incorretas } = useLocalSearchParams();
+  const { corretas, incorretas} = useLocalSearchParams<{
+    corretas: string, incorretas: string
+  }>();
 
-  // Converta as strings JSON de volta para objetos
-  const corretasParsed = JSON.parse(corretas || "[]");
-  const incorretasParsed = JSON.parse(incorretas || "[]");
+  let corretasParsed = [];
+  let incorretasParsed = [];
 
-  // Calcular porcentagem de acerto
+  try {
+    corretasParsed = JSON.parse(corretas);
+    incorretasParsed = JSON.parse(incorretas);
+  } catch (error) {
+    console.error("Erro ao parsear os parâmetros:", error);
+  }
+
+  console.log("Corretas recebidas:", corretasParsed);
+  console.log("Incorretas recebidas:", incorretasParsed);
+
   const totalQuestoes = corretasParsed.length + incorretasParsed.length;
   const porcentagemAcertos =
     totalQuestoes > 0 ? ((corretasParsed.length / totalQuestoes) * 100).toFixed(2) : "0";
@@ -26,6 +37,12 @@ const ResultScreen = () => {
           Você acertou {corretasParsed.length} de {totalQuestoes} questões.
         </Text>
       </View>
+
+      <Text style={styles.studyMore}>
+        {parseFloat(porcentagemAcertos) < 50
+          ? "Estude mais, você consegue melhorar!"
+          : "Parabéns pelo ótimo desempenho!"}
+      </Text>
     </View>
   );
 };
@@ -55,6 +72,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 5,
     elevation: 5,
+    marginBottom: 20,
   },
   circle: {
     width: 100,
@@ -74,6 +92,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     color: "#636c76",
+  },
+  studyMore: {
+    fontSize: 16,
+    color: "#ff6347",
+    textAlign: "center",
+    marginTop: 20,
   },
 });
 
