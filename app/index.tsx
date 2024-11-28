@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, SafeAreaView, Image, ImageProps } from "react-native";
+import { FlatList, SafeAreaView, Image, ImageProps, View } from "react-native";
 import styled from "styled-components/native";
 import Header from "@/components/Header";
 import { Link as ExpoRouterLink } from 'expo-router';
@@ -332,7 +332,7 @@ const Home: React.FC = () => {
                         <IconWrapper>
                             <Icon
                                 type="material"
-                                name='refresh'
+                                name='science'
                                 size={60}
                                 color={'#636C76'}
                             />
@@ -341,7 +341,7 @@ const Home: React.FC = () => {
                             NOSSO PROJETO
                         </SectionTitle>
                         <SectionDescription>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, excepturi.
+                        O Química In Box é um projeto desenvolvido a partir de percepções de professores e alunos do Ensino Médio acerca dos desafios de compreender e mapear os níveis de proficiência de cada estudante para o ensino e a aprendizagem em química. 
                         </SectionDescription>
                     </ProjectSection>
 
@@ -349,7 +349,7 @@ const Home: React.FC = () => {
                         <IconWrapper>
                             <Icon
                                 type="material"
-                                name='refresh'
+                                name='task'
                                 size={60}
                                 color={'#636C76'}
                             />
@@ -358,7 +358,7 @@ const Home: React.FC = () => {
                             NOSSO PROJETO
                         </SectionTitle>
                         <SectionDescription>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, excepturi.
+                        O Química In Box foca em fragmentar a química em suas grandes áreas, alinhando-se ao Ensino Médio, ao invés de adotar uma visão generalista das Ciências da Natureza. O projeto oferece testes gratuitos para que alunos avaliem suas habilidades em cada subárea e personalizem seus estudos com base nos resultados.
                         </SectionDescription>
                     </ProjectSection>
 
@@ -366,7 +366,7 @@ const Home: React.FC = () => {
                         <IconWrapper>
                             <Icon
                                 type="material"
-                                name='refresh'
+                                name='assessment'
                                 size={60}
                                 color={'#636C76'}
                             />
@@ -375,7 +375,7 @@ const Home: React.FC = () => {
                             NOSSO PROJETO
                         </SectionTitle>
                         <SectionDescription>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, excepturi.
+                        O Química In Box disponibiliza testes gratuitos que fragmentam a química em áreas específicas, ajudando alunos do Ensino Médio a identificar suas proficiências e personalizar os estudos.
                         </SectionDescription>
                     </ProjectSection>
                     
@@ -451,6 +451,7 @@ const SectionDescription = styled.Text`
     margin-top: 10px;
     width: 90%;
     text-align: center;
+    max-width: 95%;
 `
 
 const ContainerLink = styled(ExpoRouterLink)`
