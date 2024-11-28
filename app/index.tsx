@@ -24,28 +24,28 @@ export type Testes = {
 const TestAtom: Testes[] = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      image: '',
-      title: 'Modelos atômicos',
+      image: require('../assets/images/IconsM/Atomistica.png'),
+      title: 'Estrutura Atômica',
       text: 'A atomística estuda o átomo e suas características.',
       matter: 1
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-       image: '',
-      title: 'Estrutura Atômica',
+      image: require('../assets/images/IconsM/Atomistica.png'),
+      title: 'Modelos atômicos',
       text: 'A estrutura atômica envolve a organização das partículas subatômicas.',
       matter: 2
     },
     {
       id: '3ac68afc-c5-48d3-a4f8-fbd91aa97f63',
-       image: '',
+      image: require('../assets/images/IconsM/Atomistica.png'),
       title: 'Configuração eletrônica',
       text: 'A configuração eletrônica descreve como os elétrons estão distribuídos em torno do núcleo.',
       matter: 3
     },
     {
       id: '3acafc-c605-48d3-a4f8-fbd91a7f63',
-       image: '',
+      image: require('../assets/images/IconsM/Atomistica.png'),
       title: 'Radioatividade',
       text: 'Radioatividade é o processo pelo qual átomos instáveis emitem radiação.',
       matter: 4
@@ -55,91 +55,91 @@ const TestAtom: Testes[] = [
   const TestQuimGeral: Testes[] = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb2a',
-       image: '',
+      image: require('../assets/images/IconsM/Inorganica.png'),
       title: 'Propriedades da matéria',
       text: 'As propriedades da matéria determinam o comportamento físico e químico dos materiais.',
       matter: 5
     },
     {
       id: '3ac68afc-c605-4d3-a4f8-fbd91aa97f63',
-       image: '',
+      image: require('../assets/images/IconsM/Inorganica.png'),
       title: 'Substâncias químicas',
       text: 'Substâncias químicas são compostos com propriedades específicas que não mudam sem uma reação química.',
       matter: 6
     },
     {
       id: '3ac68afc-c5-48d3-a4f8-fbd91aa97f63',
-       image: '',
+      image: require('../assets/images/IconsM/Inorganica.png'),
       title: 'Separação de misturas',
       text: 'Existem diversos métodos para separar componentes de misturas, como filtragem e destilação.',
       matter: 7
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91a7f63',
-       image: '',
+      image: require('../assets/images/IconsM/Inorganica.png'),
       title: 'Tabela periódica',
       text: 'A tabela periódica organiza os elementos químicos com base em suas propriedades e estrutura.',
       matter: 8
     },
     {
       id: '3a768afc-c605-48d3-a4f8-fbd91a7f63',
-       image: '',
+      image: require('../assets/images/IconsM/Inorganica.png'),
       title: 'Propriedades periódicas',
       text: 'As propriedades periódicas, como raio atômico e eletronegatividade, variam de acordo com a posição dos elementos na tabela.',
       matter: 9
     },
     {
       id: '3ac68afc-c605-486523-a4f8-fbd91a7f63',
-       image: '',
+      image: require('../assets/images/IconsM/Inorganica.png'),
       title: 'Ligações químicas',
       text: 'Ligações químicas ocorrem quando átomos compartilham ou transferem elétrons para alcançar estabilidade.',
       matter: 10
     },
     {
       id: '3ac64sg88afc-c605-48d3-a4f8-fbd91a7f63',
-       image: '',
+      image: require('../assets/images/IconsM/Inorganica.png'),
       title: 'Geometria molecular e Polaridade',
       text: 'A geometria molecular define a forma das moléculas, enquanto a polaridade está relacionada à distribuição dos elétrons.',
       matter: 11
     },
     {
       id: '3ac68afc-c605-48dsrbhthsra7f63',
-       image: '',
+      image: require('../assets/images/IconsM/Inorganica.png'),
       title: 'Forças intermoleculares',
       text: 'Forças intermoleculares são as interações entre moléculas que influenciam suas propriedades físicas.',
       matter: 12
     },
     {
       id: '3adfrvare8afc-c605-48d3-a4f8-fbd91a7f63',
-       image: '',
+      image: require('../assets/images/IconsM/Inorganica.png'),
       title: 'Leis ponderais',
       text: 'As leis ponderais tratam das relações quantitativas nas reações químicas, como as leis de Lavoisier e Proust.',
       matter: 13
     },
     {
       id: '3ac68afc-c60vfdb48d3-a4f8-fbd91a7f63',
-       image: '',
+      image: require('../assets/images/IconsM/Inorganica.png'),
       title: 'Reações químicas',
       text: 'Reações químicas envolvem a transformação de substâncias em novas substâncias com diferentes propriedades.',
       matter: 14
     },
     {
       id: '3adsv8afc-c605-48d3-a4f8-fbd91a7f63',
-       image: '',
+      image: require('../assets/images/IconsM/Inorganica.png'),
       title: 'Quantidade de matéria',
       text: 'A quantidade de matéria é uma medida relacionada à quantidade de átomos ou moléculas presentes em uma substância.',
       matter: 15
     },
     {
       id: '87ac68afc-c605-48d3-a4f8-fbd91a7f63',
-       image: '',
+      image: require('../assets/images/IconsM/Inorganica.png'),
       title: 'Gases e transformações gasosas',
       text: 'O estudo dos gases envolve suas propriedades e as transformações que ocorrem com variações de temperatura e pressão.',
       matter: 16
     },
     {
       id: '625ac68afc-c605-48d3-a4f8-fbd91a7f63',
-       image: '',
+      image: require('../assets/images/IconsM/Inorganica.png'),
       title: 'Estequiometria',
       text: 'A estequiometria calcula as quantidades de reagentes e produtos em uma reação química.',
       matter: 17
@@ -149,35 +149,35 @@ const TestAtom: Testes[] = [
   const TestInor: Testes[] = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      image: '../../assets/images/Icons/lattice.png',
+      image: require('../assets/images/IconsM/QuimicaGeral.png'),
       title: 'Ácidos',
       text: 'Ácidos são compostos que liberam íons hidrogênio (H+) em solução.',
       matter: 18
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      image: '../../assets/images/Icons/lattice.png',
+      image: require('../assets/images/IconsM/QuimicaGeral.png'),
       title: 'Bases',
       text: 'Bases são compostos que liberam íons hidróxido (OH-) em solução.',
       matter: 19
     },
     {
       id: '3ac68afc-c5-48d3-a4f8-fbd91aa97f63',
-      image: '../../assets/images/Icons/lattice.png',
+      image: require('../assets/images/IconsM/QuimicaGeral.png'),
       title: 'Sais',
       text: 'Sais são compostos formados pela reação de um ácido com uma base.',
       matter: 20
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91a7f63',
-      image: '../../assets/images/Icons/lattice.png',
+      image: require('../assets/images/IconsM/QuimicaGeral.png'),
       title: 'Óxidos',
       text: 'Óxidos são compostos formados pela reação de um elemento com oxigênio.',
       matter: 21
     },
     {
       id: '3ac68afc5-48d3-a4f8-fbd91aa97f63',
-      image: '../../assets/images/Icons/lattice.png',
+      image: require('../assets/images/IconsM/QuimicaGeral.png'),
       title: 'Reações Inorgânicas',
       text: 'Reações inorgânicas envolvem a transformação de substâncias sem a participação de compostos orgânicos.',
       matter: 22
@@ -187,35 +187,35 @@ const TestAtom: Testes[] = [
   const TestFisiQuimi: Testes[] = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      image: '../../assets/images/Icons/science.png',
+      image: require('../assets/images/IconsM/FisicoQuimica.png'),
       title: 'Soluções',
       text: 'Soluções são misturas homogêneas de dois ou mais compostos.',
       matter: 23
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      image: '../../assets/images/Icons/science.png',
+      image: require('../assets/images/IconsM/FisicoQuimica.png'),
       title: 'Diluição e misturas de soluções',
       text: 'Diluição é o processo de reduzir a concentração de uma solução.',
       matter: 24
     },
     {
       id: '3ac68afc-c5-48d3-a4f8-fbd91aa97f63',
-      image: '../../assets/images/Icons/science.png',
+      image: require('../assets/images/IconsM/FisicoQuimica.png'),
       title: 'Termoquímica',
       text: 'Termoquímica estuda as trocas de calor durante as reações químicas.',
       matter: 25
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91a7f63',
-      image: '../../assets/images/Icons/science.png',
+      image: require('../assets/images/IconsM/FisicoQuimica.png'),
       title: 'Cinética Química',
       text: 'Cinética química estuda a velocidade das reações químicas e os fatores que a influenciam.',
       matter: 26
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91a7f63',
-      image: '../../assets/images/Icons/science.png',
+      image: require('../assets/images/IconsM/FisicoQuimica.png'),
       title: 'Equilíbrio químico',
       text: 'Equilíbrio químico é o estado no qual as taxas de reação direta e reversa são iguais.',
       matter: 27
@@ -225,28 +225,28 @@ const TestAtom: Testes[] = [
   const TestOrga: Testes[] = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      image: '../../assets/images/Icons/molecule.png',
+      image: require('../assets/images/IconsM/Organica.png'),
       title: 'Cadeias Carbônicas',
       text: 'As cadeias carbônicas são a espinha dorsal das moléculas orgânicas.',
       matter: 34
     },
     {
       id: '3ac6ds-c605-48d3-a4f8-fbd91aa97f63',
-      image: '../../assets/images/Icons/molecule.png',
+      image: require('../assets/images/IconsM/Organica.png'),
       title: 'Hidrocarbonetos',
       text: 'Hidrocarbonetos são compostos formados por carbono e hidrogênio, como alcanos e alcenos.',
       matter: 35
     },
     {
       id: '3ac68afc-c5-48d3-a4f8-fbd91aa97f63',
-      image: '../../assets/images/Icons/molecule.png',
+      image: require('../assets/images/IconsM/Organica.png'),
       title: 'Funções Oxigenadas',
       text: 'Funções oxigenadas são grupos funcionais com oxigênio, como álcoois e ácidos.',
       matter: 36
     },
     {
       id: '3ac68afc-c60vdsbh48d3-a4f8-fbd91a7f63',
-      image: '../../assets/images/Icons/molecule.png',
+      image: require('../assets/images/IconsM/Organica.png'),
       title: 'Funções Nitrogenadas',
       text: 'Funções nitrogenadas incluem aminas e amidas, compostos que contêm o elemento nitrogênio.',
       matter: 37

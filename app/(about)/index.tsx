@@ -10,6 +10,7 @@ import {
     UIManager, 
     Platform, 
     FlatList,
+    ImageProps,
 } from "react-native";
 import { Link as ExpoRouterLink } from 'expo-router';
 
@@ -19,13 +20,13 @@ if (Platform.OS === 'android') {
 
 type CardProps = {
     title: string;
-    image: string;
+    image: ImageProps;
     text: string;
 };
 
 type TestCardItem = {
     id: string;
-    image: string;
+    image: ImageProps;
     title: string;
     text: string;
     matter: number;
@@ -57,7 +58,7 @@ export default function About() {
             }}>
                 <CardImage>
                     <SubImage>
-                        {/* <ImageIcon source={require(image)} /> */}
+                        <ImageIcon source={image} />
                     </SubImage>
                 </CardImage>
                 <CardQuestTitleSection>

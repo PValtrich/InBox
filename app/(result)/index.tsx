@@ -39,7 +39,7 @@ const ResultScreen = () => {
       </View>
 
       <Text style={styles.studyMore}>
-        {parseFloat(porcentagemAcertos) < 50
+        {parseFloat(porcentagemAcertos) < 70
           ? "Estude mais, você consegue melhorar!"
           : "Parabéns pelo ótimo desempenho!"}
       </Text>

@@ -117,7 +117,6 @@ export default function Question() {
                 <StyledTitle>{questao.enunciado}</StyledTitle>
               </SectionTitle>
 
-              {/* Renderizando a imagem apenas se a URL não for vazia */}
               {questao.imagem && questao.imagem.trim() !== "" && (
                 <QuestionImage
                   source={{ uri: questao.imagem }}
